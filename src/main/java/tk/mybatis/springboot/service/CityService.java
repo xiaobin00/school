@@ -27,10 +27,11 @@ package tk.mybatis.springboot.service;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import tk.mybatis.springboot.mapper.CityMapper;
-import tk.mybatis.springboot.mapper.CountryMapper;
+import tk.mybatis.springboot.mapper.StudentMapper;
 import tk.mybatis.springboot.model.City;
-import tk.mybatis.springboot.model.Country;
+import tk.mybatis.springboot.model.Student;
 
 import java.util.List;
 
@@ -43,7 +44,8 @@ public class CityService {
 
     @Autowired
     private CityMapper cityMapper;
-
+    @Autowired
+    private StudentMapper studentMapper;
     public List<City> getAll(City city) {
         if (city.getPage() != null && city.getRows() != null) {
             PageHelper.startPage(city.getPage(), city.getRows(), "id");
@@ -58,7 +60,12 @@ public class CityService {
     public void deleteById(Integer id) {
         cityMapper.deleteByPrimaryKey(id);
     }
-
+    
+    public Student getStudentById(int id){
+    	
+    	return studentMapper.selectAll().get(0);
+    }
+    
     public void save(City country) {
         if (country.getId() != null) {
             cityMapper.updateByPrimaryKey(country);

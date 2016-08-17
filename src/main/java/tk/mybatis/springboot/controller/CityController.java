@@ -31,7 +31,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import tk.mybatis.springboot.model.City;
+import tk.mybatis.springboot.model.Student;
 import tk.mybatis.springboot.service.CityService;
 
 import java.util.List;
@@ -59,9 +61,9 @@ public class CityController {
     }
 
     @RequestMapping(value = "/view/{id}")
-    public City view(@PathVariable Integer id) {
+    public Student view(@PathVariable Integer id) {
         ModelAndView result = new ModelAndView();
-        City city = cityService.getById(id);
+        Student city = cityService.getStudentById(id);
         return city;
     }
 
